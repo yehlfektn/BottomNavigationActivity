@@ -35,14 +35,19 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        Timber.e("onRestart()")
+    }
+
     override fun onStart() {
         super.onStart()
-        Timber.e("OnStart()")
+        Timber.e("onStart()")
     }
 
     override fun onResume() {
         super.onResume()
-        Timber.e("OnResume()")
+        Timber.e("onResume()")
     }
 
     override fun onPause() {
