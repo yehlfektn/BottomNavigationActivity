@@ -69,4 +69,9 @@ class HomeFragment : Fragment() {
         super.onDestroy()
         Timber.e("onDestroy()")
     }
+
+    override fun onDetach() {
+        super.onDetach()
+        Timber.e("onDetach()")
+    }
 }

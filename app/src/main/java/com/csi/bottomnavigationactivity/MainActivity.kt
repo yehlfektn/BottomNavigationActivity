@@ -59,4 +59,10 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         Timber.e("onDestroy()")
     }
+
+    override fun onRestart() {
+        super.onRestart()
+        Timber.e("onRestart()")
+    }
+
 }
