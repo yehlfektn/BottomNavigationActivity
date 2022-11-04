@@ -1,13 +1,13 @@
 package com.csi.bottomnavigationactivity
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.csi.bottomnavigationactivity.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import timber.log.Timber
 
 
@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Timber.e("OnCreate")
+        Timber.i("OnCreate")
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -35,28 +35,16 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
-    override fun onStart() {
-        super.onStart()
-        Timber.e("OnStart()")
-    }
+    override fun onStart() = super.onStart().also { Timber.i("OnStart()") }
 
-    override fun onResume() {
-        super.onResume()
-        Timber.e("OnResume()")
-    }
+    override fun onResume() = super.onResume().also { Timber.i("OnResume()") }
 
-    override fun onPause() {
-        super.onPause()
-        Timber.e("onPause()")
-    }
+    override fun onPause() = super.onPause().also { Timber.i("onPause()") }
 
-    override fun onStop() {
-        super.onStop()
-        Timber.e("onStop()")
-    }
+    override fun onStop() = super.onStop().also { Timber.i("onStop()") }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Timber.e("onDestroy()")
-    }
+    override fun onRestart() = super.onRestart().also { Timber.i("onRestart()") }
+
+    override fun onDestroy() = super.onDestroy().also { Timber.e("onDestroy()") }
+
 }
