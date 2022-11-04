@@ -25,7 +25,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Timber.e("onCreateView()")
+        Timber.i("onCreateView()")
         homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
@@ -41,32 +41,30 @@ class HomeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Timber.e("onDestroyView()")
+        Timber.i("onDestroyView()")
         _binding = null
     }
 
-    override fun onStart() {
-        super.onStart()
-        Timber.e("OnStart()")
-    }
+    override fun onCreate(savedInstanceState: Bundle?) =
+        super.onCreate(savedInstanceState).also { Timber.i("onCreate()") }
 
-    override fun onResume() {
-        super.onResume()
-        Timber.e("OnResume()")
-    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) =
+        super.onViewCreated(view, savedInstanceState).also { Timber.i("onViewCreated()") }
 
-    override fun onPause() {
-        super.onPause()
-        Timber.e("onPause()")
-    }
+    override fun onViewStateRestored(savedInstanceState: Bundle?) =
+        super.onViewStateRestored(savedInstanceState).also { Timber.i("onViewStateRestored()") }
 
-    override fun onStop() {
-        super.onStop()
-        Timber.e("onStop()")
-    }
+    override fun onStart() = super.onStart().also { Timber.i("OnStart()") }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Timber.e("onDestroy()")
-    }
+    override fun onResume() = super.onResume().also { Timber.i("OnResume()") }
+
+    override fun onPause() = super.onPause().also { Timber.i("onPause()") }
+
+    override fun onStop() = super.onStop().also { Timber.i("onStop()") }
+
+    override fun onSaveInstanceState(outState: Bundle) =
+        super.onSaveInstanceState(outState).also { Timber.i("onSaveInstanceState()") }
+
+    override fun onDestroy() = super.onDestroy().also { Timber.i("onDestroy()") }
+
 }
