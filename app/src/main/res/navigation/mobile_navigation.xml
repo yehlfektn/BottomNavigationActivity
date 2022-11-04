@@ -22,4 +22,11 @@
         android:name="com.csi.bottomnavigationactivity.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_bookmarks"
+        android:name="com.csi.bottomnavigationactivity.ui.bookmarks.BookmarksFragment"
+        android:label="fragment_bookmarks"
+        tools:layout="@layout/fragment_bookmarks" />
+
 </navigation>
