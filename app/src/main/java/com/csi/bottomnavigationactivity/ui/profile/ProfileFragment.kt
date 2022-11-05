@@ -1,4 +1,4 @@
-package com.csi.bottomnavigationactivity.ui.home
+package com.csi.bottomnavigationactivity.ui.profile
 
 import android.content.Context
 import android.os.Bundle
@@ -9,16 +9,16 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.csi.bottomnavigationactivity.databinding.FragmentHomeBinding
+import androidx.lifecycle.get
+import com.csi.bottomnavigationactivity.R
+import com.csi.bottomnavigationactivity.databinding.FragmentProfileBinding
 import timber.log.Timber
 
-class HomeFragment : Fragment() {
+class ProfileFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
-    private var _binding: FragmentHomeBinding? = null
+    private lateinit var profileViewModel: ProfileViewModel
+    private var _binding: FragmentProfileBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -26,23 +26,23 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Timber.e("onCreateView()")
-        homeViewModel =
-            ViewModelProvider(this)[HomeViewModel::class.java]
+        Timber.i("onCreateView()")
+        profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+        val textView: TextView = binding.textProfile
+        profileViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
         Timber.i("onDestroyView()")
+        _binding = null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

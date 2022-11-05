@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Timber.e("OnCreate")
+        Timber.i("OnCreate")
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -28,7 +28,9 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_home,
+                R.id.navigation_dashboard,
+                R.id.navigation_notifications,
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -37,26 +39,31 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Timber.e("OnStart()")
+        Timber.i("OnStart()")
     }
 
     override fun onResume() {
         super.onResume()
-        Timber.e("OnResume()")
+        Timber.i("OnResume()")
     }
 
     override fun onPause() {
         super.onPause()
-        Timber.e("onPause()")
+        Timber.i("onPause()")
     }
 
     override fun onStop() {
         super.onStop()
-        Timber.e("onStop()")
+        Timber.i("onStop()")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Timber.e("onDestroy()")
+        Timber.i("onDestroy()")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Timber.i("onRestart()")
     }
 }
