@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.csi.bottomnavigationactivity.R
 import com.csi.bottomnavigationactivity.databinding.FragmentDashboardBinding
+import timber.log.Timber
 
 class DashboardFragment : Fragment() {
 
@@ -25,6 +26,7 @@ class DashboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Timber.e("onCreateView()")
         dashboardViewModel =
             ViewModelProvider(this).get(DashboardViewModel::class.java)
 
@@ -38,8 +40,35 @@ class DashboardFragment : Fragment() {
         return root
     }
 
+
     override fun onDestroyView() {
         super.onDestroyView()
+        Timber.e("onDestroyView()")
         _binding = null
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Timber.e("OnStart()")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Timber.e("OnResume()")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Timber.e("onPause()")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Timber.e("onStop()")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Timber.e("onDestroy()")
     }
 }
