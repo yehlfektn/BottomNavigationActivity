@@ -22,4 +22,10 @@
         android:name="com.csi.bottomnavigationactivity.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_dudos"
+        android:name="com.csi.bottomnavigationactivity.ui.dudos.DudosFragment"
+        android:label="Dudos"
+        tools:layout="@layout/fragment_dudos" />
 </navigation>

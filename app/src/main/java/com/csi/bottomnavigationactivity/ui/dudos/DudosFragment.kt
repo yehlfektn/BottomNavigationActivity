@@ -1,4 +1,4 @@
-package com.csi.bottomnavigationactivity.ui.notifications
+package com.csi.bottomnavigationactivity.ui.dudos
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,16 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.csi.bottomnavigationactivity.R
-import com.csi.bottomnavigationactivity.databinding.FragmentNotificationsBinding
+import com.csi.bottomnavigationactivity.databinding.FragmentDashboardBinding
+import com.csi.bottomnavigationactivity.databinding.FragmentDudosBinding
+import com.csi.bottomnavigationactivity.databinding.FragmentHomeBinding
+import com.csi.bottomnavigationactivity.ui.dashboard.DashboardViewModel
+import com.csi.bottomnavigationactivity.ui.home.HomeViewModel
 import timber.log.Timber
 
-class NotificationsFragment : Fragment() {
+class DudosFragment : Fragment() {
 
-    private lateinit var notificationsViewModel: NotificationsViewModel
-    private var _binding: FragmentNotificationsBinding? = null
+    private lateinit var dudosViewModel: DudosViewModel
+    private var _binding: FragmentDudosBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -27,16 +29,12 @@ class NotificationsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Timber.e("onCreateView()")
-        notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+        dudosViewModel =
+            ViewModelProvider(this).get(DudosViewModel::class.java)
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentDudosBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
         return root
     }
 
