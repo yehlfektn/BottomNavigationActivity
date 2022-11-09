@@ -1,13 +1,40 @@
 package com.csi.bottomnavigationactivity.ui.profile
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.*
+import com.csi.bottomnavigationactivity.db.Note
+import com.csi.bottomnavigationactivity.db.NoteDatabase
+import com.csi.bottomnavigationactivity.db.Post
+import com.csi.bottomnavigationactivity.repository.PostRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class ProfileViewModel : ViewModel() {
-    private val _text = MutableLiveData<String>().apply {
-        value = "Profile Fragment"
+class ProfileViewModel(application: Application) : AndroidViewModel(application) {
+
+   val allPosts: LiveData<List<Post>>
+   private val repository: PostRepository
+
+   init {
+       val dao = NoteDatabase.getDatabase(application).getPostsDao()
+       repository = PostRepository(dao)
+       allPosts = repository.allPosts
+   }
+
+    fun deleteNote(post: Post) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.delete(post)
+        }
     }
 
-    val text: LiveData<String> = _text
+    fun updateNote(post: Post) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.update(post)
+        }
+    }
+
+    fun addNote(post: Post) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.insert(post)
+        }
+    }
 }

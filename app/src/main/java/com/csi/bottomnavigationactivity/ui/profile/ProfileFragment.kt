@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.csi.bottomnavigationactivity.R
 import com.csi.bottomnavigationactivity.databinding.FragmentProfileBinding
 import timber.log.Timber
@@ -18,6 +20,8 @@ class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding
         get() = _binding!!
+
+    private lateinit var recyclerView: RecyclerView
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -43,9 +47,15 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Timber.e("onViewCreated()")
-        profileViewModel.text.observe(viewLifecycleOwner, Observer {
-            binding.textProfile.text = it
-        })
+        val adapter = PostsAdapter()
+        binding.fab.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_profile_to_addEditFragment)
+        }
+        recyclerView = binding.recyclerView
+        recyclerView.adapter = adapter
+        profileViewModel.allPosts.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
