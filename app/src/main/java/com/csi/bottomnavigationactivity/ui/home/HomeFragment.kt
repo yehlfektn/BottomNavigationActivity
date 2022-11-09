@@ -1,6 +1,5 @@
 package com.csi.bottomnavigationactivity.ui.home
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,16 +20,6 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        Timber.e("onAttach()")
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Timber.e("onCreate()")
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -50,24 +39,20 @@ class HomeFragment : Fragment() {
         return root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        Timber.e("onViewCreated()")
-    }
-
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-        Timber.e("onViewStateRestored()")
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Timber.e("onDestroyView()")
+        _binding = null
     }
 
     override fun onStart() {
         super.onStart()
-        Timber.e("onStart()")
+        Timber.e("OnStart()")
     }
 
     override fun onResume() {
         super.onResume()
-        Timber.e("onResume()")
+        Timber.e("OnResume()")
     }
 
     override fun onPause() {
@@ -80,19 +65,8 @@ class HomeFragment : Fragment() {
         Timber.e("onStop()")
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Timber.e("onDestroyView()")
-        _binding = null
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         Timber.e("onDestroy()")
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        Timber.e("onDetach()")
     }
 }
