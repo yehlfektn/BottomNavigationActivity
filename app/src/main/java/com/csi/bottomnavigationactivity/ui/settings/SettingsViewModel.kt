@@ -3,11 +3,17 @@ package com.csi.bottomnavigationactivity.ui.settings
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.csi.bottomnavigationactivity.db.Note
+import com.csi.bottomnavigationactivity.repository.NoteRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class SettingsViewModel : ViewModel() {
+class SettingsViewModel(private val repository : NoteRepository) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is settings Fragment"
+    fun deleteAllNotes() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteAll()
+        }
     }
-    val text: LiveData<String> = _text
 }
