@@ -1,9 +1,9 @@
 package com.csi.bottomnavigationactivity.ui.home
 
-import android.app.Application
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.csi.bottomnavigationactivity.db.Note
-import com.csi.bottomnavigationactivity.db.NoteDatabase
 import com.csi.bottomnavigationactivity.repository.NoteRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

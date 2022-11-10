@@ -23,6 +23,10 @@ interface NotesDao {
     // order on below line and we are specifying
     // the table name from which
     // we have to get the data.
+
+    @Query("Delete from notesTable")
+    fun deleteAllNotes()
+
     @Query("Select * from notesTable order by id ASC")
     fun getAllNotes(): LiveData<List<Note>>
 
