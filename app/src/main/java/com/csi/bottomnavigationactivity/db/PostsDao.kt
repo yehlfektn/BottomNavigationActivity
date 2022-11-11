@@ -2,11 +2,15 @@ package com.csi.bottomnavigationactivity.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PostsDao {
-    @Query("SELECT * FROM postsTable ORDER BY id ASC")
+    @Query("SELECT * FROM posts_table ORDER BY id ASC")
     fun getAllPosts(): LiveData<List<Post>>
+
+    @Query("SELECT * FROM posts_table WHERE id= :id")
+    fun getPostById(id: Long): Flow<Post>
 
     @Delete
     suspend fun delete(post: Post)

@@ -2,6 +2,7 @@ package com.csi.bottomnavigationactivity.ui.profile
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +16,7 @@ class PostsAdapter
             binding.apply {
                 postTitle.text = post.title
                 postContent.text = post.content
+                postDelete.setOnClickListener {  }
             }
         }
     }

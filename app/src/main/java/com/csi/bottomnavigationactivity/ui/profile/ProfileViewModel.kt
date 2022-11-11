@@ -5,11 +5,15 @@ import androidx.lifecycle.*
 import com.csi.bottomnavigationactivity.db.Note
 import com.csi.bottomnavigationactivity.db.NoteDatabase
 import com.csi.bottomnavigationactivity.db.Post
+import com.csi.bottomnavigationactivity.db.PostsDao
 import com.csi.bottomnavigationactivity.repository.PostRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
-class ProfileViewModel(application: Application) : AndroidViewModel(application) {
+class ProfileViewModel(
+    application: Application
+) : AndroidViewModel(application) {
 
    val allPosts: LiveData<List<Post>>
    private val repository: PostRepository
@@ -20,19 +24,30 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
        allPosts = repository.allPosts
    }
 
-    fun deleteNote(post: Post) {
+    fun deletePost(post: Post) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.delete(post)
         }
     }
 
-    fun updateNote(post: Post) {
+    fun updatePost(post: Post) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.update(post)
         }
     }
 
-    fun addNote(post: Post) {
+    fun getPostById(id: Long) = repository.get(id).asLiveData()
+
+    fun isValidEntry(name: String, content: String): Boolean {
+        return name.isNotBlank() && content.isNotBlank()
+    }
+
+    fun addPost(name: String, content: String) {
+        val post = Post(
+            title = name,
+            content = content
+        )
+
         viewModelScope.launch(Dispatchers.IO) {
             repository.insert(post)
         }
