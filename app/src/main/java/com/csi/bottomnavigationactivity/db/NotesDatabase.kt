@@ -6,13 +6,14 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = [Note::class],
+    entities = [Note::class, Post::class],
     version = 1,
     exportSchema = false
 )
 abstract class NoteDatabase : RoomDatabase() {
 
     abstract fun getNotesDao(): NotesDao
+    abstract fun getPostsDao(): PostsDao
 
     companion object {
         // Singleton prevents multiple

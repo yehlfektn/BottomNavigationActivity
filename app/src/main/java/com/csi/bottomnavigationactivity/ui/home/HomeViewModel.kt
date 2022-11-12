@@ -12,14 +12,8 @@ class HomeViewModel(private val repository: NoteRepository) : ViewModel() {
 
     // on below line we are creating a variable
     // for our all notes list and repository
-    val allNotes: LiveData<List<Note>>
+    val allNotes: LiveData<List<Note>> = repository.allNotes
 
-
-    // on below line we are initializing
-    // our dao, repository and all notes
-    init {
-        allNotes = repository.allNotes
-    }
 
     // on below line we are creating a new method for deleting a note. In this we are
     // calling a delete method from our repository to delete our note.
