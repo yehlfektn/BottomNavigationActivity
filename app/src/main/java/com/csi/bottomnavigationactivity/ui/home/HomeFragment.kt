@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.csi.bottomnavigationactivity.AddEditNoteActivity
 import com.csi.bottomnavigationactivity.databinding.FragmentHomeBinding
 import com.csi.bottomnavigationactivity.db.Note
@@ -14,12 +16,11 @@ import com.csi.bottomnavigationactivity.utils.NoteClickDeleteInterface
 import com.csi.bottomnavigationactivity.utils.NoteClickInterface
 import com.csi.bottomnavigationactivity.utils.NoteRVAdapter
 import com.csi.bottomnavigationactivity.utils.showToast
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 class HomeFragment : Fragment(), NoteClickInterface, NoteClickDeleteInterface {
 
-    private val homeViewModel by viewModel<HomeViewModel>()
+    private lateinit var homeViewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
 
     // This property is only valid between onCreateView and
@@ -32,6 +33,10 @@ class HomeFragment : Fragment(), NoteClickInterface, NoteClickDeleteInterface {
         savedInstanceState: Bundle?
     ): View {
         Timber.e("onCreateView()")
+        homeViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+        )[HomeViewModel::class.java]
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root

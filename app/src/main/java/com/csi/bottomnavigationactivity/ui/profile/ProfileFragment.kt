@@ -1,26 +1,27 @@
-package com.csi.bottomnavigationactivity.ui.dashboard
+package com.csi.bottomnavigationactivity.ui.profile
 
 import android.content.Context
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.csi.bottomnavigationactivity.R
-import com.csi.bottomnavigationactivity.databinding.FragmentDashboardBinding
+import com.csi.bottomnavigationactivity.databinding.FragmentProfileBinding
 import timber.log.Timber
 
-class DashboardFragment : Fragment() {
+class ProfileFragment : Fragment() {
+    private lateinit var profileViewModel: ProfileViewModel
 
-    private lateinit var dashboardViewModel: DashboardViewModel
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentProfileBinding? = null
+    private val binding
+        get() = _binding!!
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private lateinit var recyclerView: RecyclerView
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -37,22 +38,24 @@ class DashboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+        profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Timber.e("onViewCreated()")
+        val adapter = PostsAdapter()
+        binding.fab.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_profile_to_addEditFragment)
+        }
+        recyclerView = binding.recyclerView
+        recyclerView.adapter = adapter
+        profileViewModel.allPosts.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
