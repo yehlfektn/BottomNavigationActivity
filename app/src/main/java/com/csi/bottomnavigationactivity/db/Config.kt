@@ -7,5 +7,6 @@ import androidx.room.PrimaryKey
 class Config (
     val nameConfig: String,
     val descriptionConfig: String,
+    val timeStamp: String,
     @PrimaryKey(autoGenerate = true) var id: Int = 0
 )

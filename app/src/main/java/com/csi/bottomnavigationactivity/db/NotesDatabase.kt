@@ -11,5 +11,6 @@ import androidx.room.RoomDatabase
     exportSchema = false
 )
 abstract class NoteDatabase : RoomDatabase() {
+    abstract val configDao: ConfigDao
     abstract val notesDao: NotesDao
 }

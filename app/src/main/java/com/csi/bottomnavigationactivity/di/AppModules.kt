@@ -3,6 +3,7 @@ package com.csi.bottomnavigationactivity.di
 import android.app.Application
 import androidx.room.Room
 import com.csi.bottomnavigationactivity.BuildConfig
+import com.csi.bottomnavigationactivity.db.ConfigDao
 import com.csi.bottomnavigationactivity.db.NoteDatabase
 import com.csi.bottomnavigationactivity.db.NotesDao
 import com.csi.bottomnavigationactivity.network.ApiService
@@ -35,8 +36,13 @@ val databaseModule = module {
         return database.notesDao
     }
 
+    fun provideConfigDao(database: NoteDatabase): ConfigDao {
+        return database.configDao
+    }
+
     single { provideDatabase(get()) }
     single { provideNotesDao(get()) }
+    single { provideConfigDao(get()) }
 }
 
 val networkModule = module {

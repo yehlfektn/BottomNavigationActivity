@@ -6,15 +6,15 @@ import androidx.room.*
 interface ConfigDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(note : Note)
+    suspend fun insert(config : Config)
 
     @Delete
-    suspend fun delete(note: Note)
+    suspend fun delete(config: Config)
 
 
     @Query("Select * from configTable order by id ASC")
-    fun getAllCfg(): LiveData<List<Note>>
+    fun getAllCfg(): LiveData<List<Config>>
 
     @Update
-    suspend fun update(note: Note)
+    suspend fun update(config: Config)
 }
