@@ -6,10 +6,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.csi.bottomnavigationactivity.db.Config
 import com.csi.bottomnavigationactivity.db.Note
+import com.csi.bottomnavigationactivity.network.IMDBResult
 import com.csi.bottomnavigationactivity.repository.ConfigRepository
+import com.csi.bottomnavigationactivity.repository.IMDBRepository
 import com.csi.bottomnavigationactivity.repository.NoteRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import timber.log.Timber
 
 class SettingsViewModel(
     private val repository: ConfigRepository,

@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
-            android:layout_toStartOf="@id/idIVDelete"
+            android:layout_toStartOf="@id/idIVDelete2"
             android:padding="4dp"
             android:text="Config1d"
             android:textColor="@color/black"
@@ -27,12 +27,12 @@
 
         <!--text view for displaying our last updated text-->
         <TextView
-            android:id="@+id/idTVDate"
+            android:id="@+id/idTVDate2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/idTVConfig"
             android:layout_margin="3dp"
-            android:layout_toStartOf="@id/idIVDelete"
+            android:layout_toStartOf="@id/idIVDelete2"
             android:padding="4dp"
             android:text="Updated At"
             android:textColor="@color/black"
@@ -40,7 +40,7 @@
 
         <!--imageview for displaying delete icon-->
         <TextView
-            android:id="@+id/idIVDelete"
+            android:id="@+id/idIVDelete2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

@@ -8,9 +8,11 @@ import com.csi.bottomnavigationactivity.db.NoteDatabase
 import com.csi.bottomnavigationactivity.db.NotesDao
 import com.csi.bottomnavigationactivity.network.ApiService
 import com.csi.bottomnavigationactivity.network.UrlProvider
+import com.csi.bottomnavigationactivity.repository.ConfigRepository
 import com.csi.bottomnavigationactivity.repository.IMDBRepository
 import com.csi.bottomnavigationactivity.repository.NoteRepository
 import com.csi.bottomnavigationactivity.ui.home.HomeViewModel
+import com.csi.bottomnavigationactivity.ui.settings.SettingsViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -23,6 +25,7 @@ import java.util.concurrent.TimeUnit
 val appModule = module {
     single { NoteRepository(get()) }
     single { IMDBRepository(get()) }
+    single { ConfigRepository(get()) }
     viewModel { HomeViewModel(get(), get()) }
 }
 
@@ -31,6 +34,7 @@ val databaseModule = module {
         return Room.databaseBuilder(application, NoteDatabase::class.java, "note_database")
             .build()
     }
+
 
     fun provideNotesDao(database: NoteDatabase): NotesDao {
         return database.notesDao
