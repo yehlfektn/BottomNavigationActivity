@@ -1,5 +1,6 @@
 package com.csi.bottomnavigationactivity.ui.notifications
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.csi.bottomnavigationactivity.R
 import com.csi.bottomnavigationactivity.databinding.FragmentNotificationsBinding
+import timber.log.Timber
 
 class NotificationsFragment : Fragment() {
 
@@ -38,8 +40,43 @@ class NotificationsFragment : Fragment() {
         return root
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Timber.i("onAttach called")
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Timber.i("onCreate called")
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Timber.i("onViewCreated called")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Timber.i("onStart called")
+    }
+    override fun onResume() {
+        super.onResume()
+        Timber.i("onResume called")
+    }
+    override fun onPause() {
+        super.onPause()
+        Timber.i("onPause called")
+    }
+    override fun onStop() {
+        super.onStop()
+        Timber.i("onStop called")
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        Timber.i("onDestroyView called")
+    }
+    override fun onDetach() {
+        super.onDetach()
+        Timber.i("onDetach called")
     }
 }

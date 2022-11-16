@@ -6,10 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = [Note::class],
-    version = 1,
+    entities = [Note::class,Config::class],
+    version = 2,
     exportSchema = false
 )
 abstract class NoteDatabase : RoomDatabase() {
+    abstract val configDao: ConfigDao
     abstract val notesDao: NotesDao
 }
