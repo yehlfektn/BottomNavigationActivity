@@ -8,34 +8,41 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.csi.bottomnavigationactivity.R
 import com.csi.bottomnavigationactivity.databinding.FragmentDashboardBinding
+import com.csi.bottomnavigationactivity.utils.CharRVAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DashboardFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private val dashboardViewModel by viewModel<DashboardViewModel>()
     private var _binding: FragmentDashboardBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private lateinit var recyclerView: RecyclerView
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
-
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
+    }
 
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        recyclerView = binding.recyclerView
+        val adapter = CharRVAdapter()
+        recyclerView.adapter = adapter
+        dashboardViewModel.getChars()
+        dashboardViewModel.charList.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
     }
 
     override fun onDestroyView() {

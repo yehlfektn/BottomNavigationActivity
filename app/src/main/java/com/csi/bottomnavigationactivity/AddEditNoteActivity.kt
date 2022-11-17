@@ -21,7 +21,7 @@ class AddEditNoteActivity : AppCompatActivity() {
     lateinit var saveBtn: Button
 
     // on below line we are creating variable for
-    // viewmodal and and integer for our note id.
+    // viewmodel and and integer for our note id.
     private val homeViewModel by viewModel<HomeViewModel>()
     var noteID = -1;
 

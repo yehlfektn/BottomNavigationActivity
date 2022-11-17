@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 // on below line we are specifying our table name
-@Entity(tableName = "notesTable")
+@Entity(tableName = "notes_table")
 // on below line we are specifying our column info
 // and inside that we are passing our column name
 class Note(
