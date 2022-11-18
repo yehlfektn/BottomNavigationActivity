@@ -5,6 +5,10 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        release {
+        }
+    }
     compileSdk 33
 
     defaultConfig {
@@ -17,20 +21,37 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "YOUR_TOKEN", '"MY_TOKEN"')
+
     }
     flavorDimensions "version"
     productFlavors {
+        beta {
+            dimension "version"
+            applicationId = "beta"
+            resValue "string", "app_name", "Beta BottomNavigation App"
+            buildConfigField("String", "MAIN_URL", '"https://www.omdbapi.com/"')
+            buildConfigField("String", "SECONDARY_URL", '"https://www.breakingbadapi.com/api/"')
+        }
+        alpha {
+            dimension "version"
+            applicationId = "alpha"
+            resValue "string", "app_name", "Alpha BottomNavigation App"
+            buildConfigField("String", "MAIN_URL", '"https://www.omdbapi.com/"')
+            buildConfigField("String", "SECONDARY_URL", '"https://www.breakingbadapi.com/api/"')
+        }
         free {
             dimension "version"
             applicationId = "free"
             resValue "string", "app_name", "Free BottomNavigation App"
             buildConfigField("String", "MAIN_URL", '"https://www.omdbapi.com/"')
+            buildConfigField("String", "SECONDARY_URL", '"https://www.breakingbadapi.com/api/"')
         }
         paid {
             dimension "version"
             applicationId = "paid"
             resValue "string", "app_name", "Paid BottomNavigation App"
             buildConfigField("String", "MAIN_URL", '"https://www.paid.omdbapi.com/"')
+            buildConfigField("String", "SECONDARY_URL", '"https://www.premium.breakingbadapi.com/api/"')
         }
     }
 
@@ -39,6 +60,7 @@ android {
             applicationIdSuffix ".debug"
             debuggable true
             buildConfigField("String", "MAIN_URL_DEBUG", '"https://www.debug.omdbapi.com/"')
+            buildConfigField("String", "SECONDARY_URL_DEBUG", '"https://www.debug.breakingbadapi.com/api/"')
         }
         release {
             debuggable false
@@ -46,6 +68,25 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField("String", "MAIN_URL_RELEASE", '"https://www.release.omdbapi.com/"')
+            buildConfigField("String", "SECONDARY_URL_RELEASE", '"https://www.release.breakingbadapi.com/api/"')
+            applicationIdSuffix '.release'
+        }
+        customDebug {
+            applicationIdSuffix ".customDebug"
+            debuggable true
+            minifyEnabled true
+            shrinkResources false
+            buildConfigField("String", "MAIN_URL_DEBUG", '"https://www.debug.omdbapi.com/"')
+            buildConfigField("String", "SECONDARY_URL_DEBUG", '"https://www.debug.breakingbadapi.com/api/"')
+        }
+        customRelease {
+            debuggable false
+            minifyEnabled true
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "MAIN_URL_RELEASE", '"https://www.release.omdbapi.com/"')
+            buildConfigField("String", "SECONDARY_URL_RELEASE", '"https://www.release.breakingbadapi.com/api/"')
+            applicationIdSuffix '.customRelease'
         }
     }
     compileOptions {

@@ -79,7 +79,7 @@ val networkModule = module {
     }
     single {
         Retrofit.Builder()
-            .baseUrl(UrlProvider.base_url)
+            .baseUrl(UrlProvider.secondaryUrl)
             .client(get())
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
