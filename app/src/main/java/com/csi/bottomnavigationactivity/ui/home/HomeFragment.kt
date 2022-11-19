@@ -1,5 +1,6 @@
 package com.csi.bottomnavigationactivity.ui.home
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -76,6 +77,16 @@ class HomeFragment : Fragment(), NoteClickInterface, NoteClickDeleteInterface {
         _binding = null
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Timber.e("OnAttach()")
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Timber.e("OnCreate()")
+    }
+
     override fun onStart() {
         super.onStart()
         Timber.e("OnStart()")
@@ -99,6 +110,11 @@ class HomeFragment : Fragment(), NoteClickInterface, NoteClickDeleteInterface {
     override fun onDestroy() {
         super.onDestroy()
         Timber.e("onDestroy()")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Timber.e("onDetach()")
     }
 
     override fun onNoteClick(note: Note) {

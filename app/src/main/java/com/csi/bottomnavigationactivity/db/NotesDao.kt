@@ -23,7 +23,7 @@ interface NotesDao {
     // order on below line and we are specifying
     // the table name from which
     // we have to get the data.
-    @Query("Select * from notesTable order by id ASC")
+    @Query("Select * from notes_table order by id ASC")
     fun getAllNotes(): LiveData<List<Note>>
 
     // below method is use to update the note.
